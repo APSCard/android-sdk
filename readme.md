@@ -13,11 +13,11 @@ APS Card SDK comes to you as a aar. To setup, you only need to include a single 
 ## Usage
 ### Configuration
 ### Initilization
-1. ApsCardLib 클래스는 application 을 상속받습니다.
-2. 사용자 어플리케이션에서 ApsCardLib 를 상속받습니다.
-3. mScanResultInterface를 선언해줍니다.(아래 Callback 의 2번 참고)
-4. Application의 onCreate 함수에서 ```super.setScanResultInterface(mScanResultInterface);``` 를 호출해줍니다.
-5. 첫 진입 IntroActivity 에서 ```ApsCardLib.getInstance().initBle();``` 를 호출해줍니다.
+0. ApsCardLib 클래스는 application 을 상속받습니다.
+1. 사용자 어플리케이션에서 ApsCardLib 를 상속받습니다.
+2. mScanResultInterface를 선언해줍니다.(아래 Callback 의 2번 참고)
+3. Application의 onCreate 함수에서 ```super.setScanResultInterface(mScanResultInterface);``` 를 호출해줍니다.
+4. 첫 진입 IntroActivity 에서 ```ApsCardLib.getInstance().initBle();``` 를 호출해줍니다.
 
 ### Callback
 
