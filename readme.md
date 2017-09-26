@@ -10,16 +10,14 @@ Our SDK provides a wide range of both utility and client-facing features that wi
 Add ```maven { url 'https://lockcardlib.bintray.com/maven' }``` to build.gradle(Module: app) -> repositories and Add ```compile 'com.friver.apscard:lockcardlib:1.0@aar'``` to dependencies. More on [Android dependencies here](https://developer.android.com/studio/build/dependencies.html).
 ### Manual
 APS Card SDK comes to you as a aar. To setup, you only need to include a single lockcardlib.arr. arr file in your project to get started:
-1. Drag and drop APSCardSDK.framework file into your Xcode project. It will automatically show up in your project navigator and will be added to "Linked Frameworks and Libraries" section in project settings.
-2. APSCard SDK depends on Apple's CoreLocation and CoreBlueooth frameworks as well as SystemConfiguration framework to handle APSCard Server API requests, so you should include them in your project too. When you add them to your project settings, it should look like on the screenshot below.
 ## Usage
 ### Configuration
 ### Initilization
-0. ApsCardLib 클래스는 application 을 상속받습니다.
-1. 사용자 어플리케이션에서 ApsCardLib 를 상속받습니다.
-2. mScanResultInterface를 선언해줍니다.(아래 Callback 의 2번 참고)
-3. Application의 onCreate 함수에서 ```super.setScanResultInterface(mScanResultInterface);``` 를 호출해줍니다.
-4. 첫 진입 IntroActivity 에서 ```ApsCardLib.getInstance().initBle();``` 를 호출해줍니다.
+1. ApsCardLib 클래스는 application 을 상속받습니다.
+2. 사용자 어플리케이션에서 ApsCardLib 를 상속받습니다.
+3. mScanResultInterface를 선언해줍니다.(아래 Callback 의 2번 참고)
+4. Application의 onCreate 함수에서 ```super.setScanResultInterface(mScanResultInterface);``` 를 호출해줍니다.
+5. 첫 진입 IntroActivity 에서 ```ApsCardLib.getInstance().initBle();``` 를 호출해줍니다.
 
 ### Callback
 
@@ -88,37 +86,37 @@ APS Card SDK comes to you as a aar. To setup, you only need to include a single 
     </pre></code>
 ### APIs
 
-- public void setScanResultInterface(ScanResultInterface scanResultInterface)
-  ApsCardLib 를 상속받는 Application의 conCreate 함수에서 호출해줍니다.
+- ```public void setScanResultInterface(ScanResultInterface scanResultInterface)```<br>
+  ApsCardLib 를 상속받는 Application의 conCreate 함수에서 호출해줍니다.<br>
   ScanResultInterface 는 백그라운드 스캔 시 콜백 받는 인터페이스입니다.
 
-- public void initBle()
+- ```public void initBle()```<br>
   Card 연동을 위한 Beacon 관련 기능 및 내부 데이터 초기화
 
-- public void startScanCard(final BluetoothAdapter.LeScanCallback leScanCallback)
-  1초 뒤부터 카드 스캔을 시작하고, 카드 검색이 되면 leScanCallback로 넘겨줍니다.
+- ```public void startScanCard(final BluetoothAdapter.LeScanCallback leScanCallback)```<br>
+  1초 뒤부터 카드 스캔을 시작하고, 카드 검색이 되면 leScanCallback로 넘겨줍니다.<br>
   이 함수를 호출하면 내부적으로 백그라운드 스캔을 멈춥니다.
 
-- public void stopScanCard(BluetoothAdapter.LeScanCallback leScanCallback)
+- ```public void stopScanCard(BluetoothAdapter.LeScanCallback leScanCallback)```<br>
   사용자 앱에서 카드 스캔을 끝낼 때 호출합니다. 이 함수를 호출하면 내부적으로 백그라운드 스캔을 다시 시작합니다.
 
-- public void startBackgroundScan()
+- ```public void startBackgroundScan()```<br>
   unlock 이나 카드 등록을 하면 백그라운드 스캔이 중지되어서, 이것들이 끝난 후에 호출해줍니다.
 
-- public void registerCard(final ICardListener iCardListener, final String macAddress, final String password, final String authNum, final String phoneNum)
+- ```public void registerCard(final ICardListener iCardListener, final String macAddress, final String password, final String authNum, final String phoneNum)```<br>
   카드를 등록합니다. 등록 과정과 결과를 iCardListener 로 보내줍니다.
 
-- public void deleteCard(String macAddress)
+- ```public void deleteCard(String macAddress)```<br>
   사용자 앱에서 등록 한 카드를 삭제할 때 호출해주면 library 에 저장되어있는 카드 정보도 삭제해줍니다.
 
-- public void unlockCard(ICardListener iCardListener,String macAddress)
+- ```public void unlockCard(ICardListener iCardListener,String macAddress)```<br>
   카드를 언락합니다. 일반적으로 언락 처리 후 startBackgroundScan 을 호출해줍니다.
 
-- public void changePassword(ICardListener iCardListener,String macAddress,String newPassword)
+- ```public void changePassword(ICardListener iCardListener,String macAddress,String newPassword)```<br>
   카드의 비밀번호를 변경해줍니다.(아직 테스트x)
 
-- public boolean checkPassword(String macAddress,String password)
+- ```public boolean checkPassword(String macAddress,String password)```<br>
   카드의 비밀번호를 확인 후 결과를 리턴해줍니다.
 
-- public boolean checkAuthNum(String authNum)
+- ```public boolean checkAuthNum(String authNum)```<br>
   등록되어 있는 카드 중 authNum 이 일치하는게 있는지 결과를 리턴해줍니다.
